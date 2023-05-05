@@ -102,10 +102,17 @@ python3 tracks_that_arent_in_any_playlist.py
 This will create a new playlist in your Spotify account named *Tracks_to_Playlists* which by default will be a private playlist.
 Everytime you run this script it will delete the playlist and create a new one always name *Tracks_to_Playlists* with the new songs you have saved, removing the one you have categorized.
 
+# Issues
+
+Check always the developer forum of Spotify and the spotipy Github for bugs, before opening an issue here:
+```
+https://github.com/spotipy-dev/spotipy
+https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer
+```
 
 # TODO
 
-- [] Keep track of time when the track was added to "Saved tracks" and to a playlist
-- [] Reorder the code to make it more object oriented
-- [] Clean the code and improve readibility and performance abstracting some methods, some code is redundant
+- [ ] Keep track of time when the track was added to "Saved tracks" and to a playlist
+- [ ] Reorder the code to make it more object oriented
+- [ ] Clean the code and improve readibility and performance abstracting some methods, some code is redundant
 
