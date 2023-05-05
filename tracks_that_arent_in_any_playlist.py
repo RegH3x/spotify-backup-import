@@ -131,28 +131,37 @@ def get_user_tracks(sp):
 
     offset = 0
     limit = 50
+    results = True
 
     results = sp.current_user_saved_tracks(limit=limit, offset=offset)
     total_tracks = results['total']
 
     liked_tracks = []
+    
+    print("\n\t[+] Getting tracks with offset {}".format(offset))
+    results = sp.current_user_saved_tracks(limit=limit, offset=offset)
 
-    while True:
-        results = sp.current_user_saved_tracks(limit=limit, offset=offset)
+    while results:
+
 
         for i, item in enumerate(results['items']):
             liked_tracks.append(item['track']['id'])
             
 
-        if results['next'] is None: break
-        else:
+        if results['next']:
             #print("[D] There are other URLs")
             # get parameters from URL
             #   "next": "https://api.spotify.com/v1/users/31vux7lk7axk3fmoofhftiypj7bq/playlists?offset=10&limit=10"
 
-            url_next = parse_qs(urlparse(results['next']).query)
-            offset = url_next['offset'][0]
-            limit = url_next['limit'][0]
+            offset = parse_qs(urlparse(results['next']).query)['offset'][0]
+            print("\n\t[+] Getting tracks with offset {}".format(offset))
+
+            print(results['next'])
+            results = sp.next(results)
+
+        else: 
+            results = None
+
         sleep(0.5)
 
 

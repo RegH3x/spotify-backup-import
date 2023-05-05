@@ -131,6 +131,7 @@ def get_user_tracks(sp):
 
     results = sp.current_user_saved_tracks(limit=limit, offset=offset)
     total_tracks = results['total']
+    print(total_tracks)
 
     liked_tracks = []
     liked_tracks_details = []
@@ -148,7 +149,7 @@ def get_user_tracks(sp):
             #print("[D] There are other URLs")
             # get parameters from URL
             #   "next": "https://api.spotify.com/v1/users/31vux7lk7axk3fmoofhftiypj7bq/playlists?offset=10&limit=10"
-                     
+            print(results['next'])
             url_next = parse_qs(urlparse(results['next']).query)
             offset = url_next['offset'][0]
             limit = url_next['limit'][0]
